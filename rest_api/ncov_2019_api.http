@@ -1,0 +1,8 @@
+@baseUrl = https://ncov2019-admin.firebaseapp.com
+
+@authorization = 6f8856bee2d7ca7a87b752319a3e36de8ff730b8e6d2e8443234cb8798b3cb04
+
+# Used to get an access token given an authorization key
+
+POST {{baseUrl}}/token
+Authorization: Basic {{authorization}}

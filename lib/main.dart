@@ -1,5 +1,7 @@
+import 'package:covid19/app/repositories/data_repository.dart';
 import 'package:covid19/app/services/api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'app/services/api.dart';
 
@@ -11,25 +13,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return Provider<DataRepository>(
+      create: (_) => DataRepository(apiService: APIService(API.sandbox())),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Coronavirus Tracker',
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: Color(0xFF101010),
+          cardColor: Color(0xFF222222)
+        ),
+        home: MyHomePage(title: 'Flutter Demo Home Page'),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -60,8 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() async {
     final apiService = APIService(API.sandbox());
     final accessToken = await apiService.getAccessToken();
-    final cases = await apiService.getEndPointData(accessToken: accessToken, endpoint: Endpoint.cases);
-    final deaths = await apiService.getEndPointData(accessToken: accessToken, endpoint: Endpoint.deaths);
+    final cases = await apiService.getEndPointData(
+        accessToken: accessToken, endpoint: Endpoint.cases);
+    final deaths = await apiService.getEndPointData(
+        accessToken: accessToken, endpoint: Endpoint.deaths);
     setState(() {
       _accessToken = accessToken;
       _cases = cases;
@@ -110,16 +106,16 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_accessToken',
               style: Theme.of(context).textTheme.headline4,
             ),
-            if(_cases != null)
-            Text(
-              'cases: $_cases',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            if(_deaths != null)
-            Text(
-              'deaths: $_deaths',
-              style: Theme.of(context).textTheme.headline4,
-            )
+            if (_cases != null)
+              Text(
+                'cases: $_cases',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            if (_deaths != null)
+              Text(
+                'deaths: $_deaths',
+                style: Theme.of(context).textTheme.headline4,
+              )
           ],
         ),
       ),

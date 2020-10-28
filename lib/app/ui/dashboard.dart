@@ -13,7 +13,7 @@ class _DashboardState extends State<Dashboard> {
   int _cases;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _updateData();
   }
@@ -23,19 +23,23 @@ class _DashboardState extends State<Dashboard> {
     final cases = await dataRepository.getEndpointData(Endpoint.cases);
     setState(() => _cases = cases);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Coronavirus Tracker'),
       ),
-      body: ListView(
-        children: [
-          EndpointCard(
-            endpoint: Endpoint.cases,
-            value: _cases,
-          )
-        ],
+      body: RefreshIndicator(
+        onRefresh: _updateData,
+        child: ListView(
+          children: [
+            EndpointCard(
+              endpoint: Endpoint.cases,
+              value: _cases,
+            )
+          ],
+        ),
       ),
     );
   }

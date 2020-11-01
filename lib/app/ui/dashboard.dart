@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:covid19/app/repositories/data_repository.dart';
 import 'package:covid19/app/repositories/endpoints_data.dart';
 import 'package:covid19/app/services/api.dart';
 import 'package:covid19/app/ui/endpoint_card.dart';
+import 'package:covid19/app/ui/show_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,16 +25,27 @@ class _DashboardState extends State<Dashboard> {
   }
 
   Future<void> _updateData() async {
-    final dataRepository = Provider.of<DataRepository>(context, listen: false);
-    final endpointsData = await dataRepository.getAllEndpointData();
-    setState(() => _endpointsData = endpointsData);
+    try {
+      final dataRepository =
+          Provider.of<DataRepository>(context, listen: false);
+      final endpointsData = await dataRepository.getAllEndpointData();
+      setState(() => _endpointsData = endpointsData);
+    } on SocketException catch (_) {
+      showAlertDialog(
+        context: context,
+        title: 'Connection Error',
+        content: 'Could not retrieve data. Please try again later.',
+        defaultActionText: 'Ok',
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final formatter = LastUpdatedDateFormatter(lastUpdated: _endpointsData != null
-                  ? _endpointsData.values[Endpoint.cases].date
-                  : null);
+    final formatter = LastUpdatedDateFormatter(
+        lastUpdated: _endpointsData != null
+            ? _endpointsData.values[Endpoint.cases].date
+            : null);
     return Scaffold(
       appBar: AppBar(
         title: Text('Coronavirus Tracker'),

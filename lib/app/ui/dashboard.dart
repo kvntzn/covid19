@@ -5,6 +5,8 @@ import 'package:covid19/app/ui/endpoint_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'last_updated_status.dart';
+
 class Dashboard extends StatefulWidget {
   @override
   _DashboardState createState() => _DashboardState();
@@ -35,6 +37,11 @@ class _DashboardState extends State<Dashboard> {
         onRefresh: _updateData,
         child: ListView(
           children: [
+            LastUpdatedStatusText(
+              text: _endpointsData != null
+                  ? _endpointsData.values[Endpoint.cases].date?.toString() ?? ''
+                  : '',
+            ),
             for (var endpoint in Endpoint.values)
               EndpointCard(
                   endpoint: endpoint,

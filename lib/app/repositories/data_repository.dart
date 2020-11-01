@@ -1,6 +1,7 @@
 import 'package:covid19/app/repositories/endpoints_data.dart';
 import 'package:covid19/app/services/api.dart';
 import 'package:covid19/app/services/api_service.dart';
+import 'package:covid19/app/services/endpoint_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 
@@ -10,8 +11,8 @@ class DataRepository {
 
   String _accessToken;
 
-  Future<int> getEndpointData(Endpoint endpoint) async =>
-      await _getDataRefreshingToken<int>(
+  Future<EndpointData> getEndpointData(Endpoint endpoint) async =>
+      await _getDataRefreshingToken<EndpointData>(
         onGetData: () => apiService.getEndPointData(
             accessToken: _accessToken, endpoint: endpoint),
       );

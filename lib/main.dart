@@ -1,7 +1,8 @@
+import 'package:covid19/app/core/consts.dart';
 import 'package:covid19/app/repositories/data_repository.dart';
 import 'package:covid19/app/services/api_service.dart';
 import 'package:covid19/app/services/data_cache_service.dart';
-import 'package:covid19/app/ui/dashboard.dart';
+import 'package:covid19/app/ui/opening_view.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -33,10 +34,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Coronavirus Tracker',
-        theme: ThemeData.dark().copyWith(
-            scaffoldBackgroundColor: Color(0xFF101010),
-            cardColor: Color(0xFF222222)),
-        home: Dashboard(),
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          fontFamily: 'Ubuntu'
+        ),
+        home: OpeningView(),
       ),
     );
   }

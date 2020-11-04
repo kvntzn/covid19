@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         title: 'Coronavirus Tracker',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-          fontFamily: 'Ubuntu'
+          fontFamily: 'Source Sans Pro'
         ),
         home: OpeningView(),
       ),

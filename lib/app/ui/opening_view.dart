@@ -1,4 +1,6 @@
 import 'package:covid19/app/core/consts.dart';
+import 'package:covid19/app/ui/dashboard.dart';
+import 'package:covid19/app/ui/home_view.dart';
 import 'package:flutter/material.dart';
 
 class OpeningView extends StatefulWidget {
@@ -34,15 +36,16 @@ class _OpeningViewState extends State<OpeningView> {
 
   Padding _buildHeader(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 50.0),
+      padding: const EdgeInsets.only(top: 40.0),
       child: Align(
         alignment: Alignment.topCenter,
         child: Text(
-          'Covid-19',
-          style: Theme.of(context)
-              .textTheme
-              .headline5
-              .copyWith(color: Colors.black87),
+          'COVID-19',
+          style: TextStyle(
+              fontSize: 60,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'PlayfairDisplay',
+              color: Colors.black87),
         ),
       ),
     );
@@ -74,26 +77,31 @@ class _OpeningViewState extends State<OpeningView> {
             SizedBox(
               height: 25,
             ),
-            Container(
-              decoration: BoxDecoration(
-                  color: AppColors.mainColor,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black26,
-                        offset: Offset(1, 1),
-                        spreadRadius: 1,
-                        blurRadius: 3),
-                  ]),
-              width: MediaQuery.of(context).size.width * .85,
-              height: 60,
-              child: Center(
-                child: Text(
-                  "GET STARTED",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => Dashboard()));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: AppColors.mainColor,
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(1, 1),
+                          spreadRadius: 1,
+                          blurRadius: 3),
+                    ]),
+                width: MediaQuery.of(context).size.width * .85,
+                height: 60,
+                child: Center(
+                  child: Text(
+                    "GET STARTED",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                  ),
                 ),
               ),
             )

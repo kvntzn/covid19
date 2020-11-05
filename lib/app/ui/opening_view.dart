@@ -79,7 +79,7 @@ class _OpeningViewState extends State<OpeningView> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => Dashboard()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => HomeView()));
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -98,7 +98,7 @@ class _OpeningViewState extends State<OpeningView> {
                   child: Text(
                     "GET STARTED",
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.black54,
                         fontWeight: FontWeight.bold,
                         fontSize: 20),
                   ),

@@ -28,16 +28,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider<DataRepository>(
       create: (_) => DataRepository(
-          apiService: APIService(API.sandbox()),
-          dataCacheService:
-              DataCacheService(sharedPreferences: sharedPreferences)),
+        apiService: APIService(API.sandbox()),
+        dataCacheService:
+            DataCacheService(sharedPreferences: sharedPreferences),
+      ),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Coronavirus Tracker',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-          fontFamily: 'Source Sans Pro'
-        ),
+            primarySwatch: Colors.blue, fontFamily: 'Source Sans Pro'),
         home: OpeningView(),
       ),
     );

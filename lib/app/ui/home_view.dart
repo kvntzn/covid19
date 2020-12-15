@@ -36,85 +36,83 @@ class _HomeViewState extends State<HomeView> {
 
   Widget _buildHeader() {
     return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildAppBar(),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            "COVID-19",
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 32),
+          ),
+        ),
+        SizedBox(height: 20),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            "Coronavirus Relief Fund",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        SizedBox(height: 10),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            "to this fund will help to stop the virus's spread and give \ncommunitites ",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              height: 1.5,
+            ),
+          ),
+        ),
+        SizedBox(height: 25),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
             children: [
-              _buildAppBar(),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  "COVID-19",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 32),
-                ),
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  "Coronavirus Relief Fund",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+              Expanded(
+                child: RaisedButton(
+                  color: AppColors.complementary,
+                  onPressed: () {},
+                  child: Text(
+                    "DONATE NOW",
+                    style: TextStyle(color: Colors.black),
                   ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  "to this fund will help to stop the virus's spread and give \ncommunitites ",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    height: 1.5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
                   ),
+                  padding: EdgeInsets.symmetric(vertical: 16),
                 ),
               ),
-              SizedBox(height: 25),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: RaisedButton(
-                        color: AppColors.complementary,
-                        onPressed: () {},
-                        child: Text(
-                          "DONATE NOW",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(50),
-                          ),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                      ),
+              SizedBox(width: 20),
+              Expanded(
+                child: RaisedButton(
+                  color: AppColors.analogous1,
+                  onPressed: () {},
+                  child: Text(
+                    "EMERGENCY",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
                     ),
-                    SizedBox(width: 20),
-                    Expanded(
-                      child: RaisedButton(
-                        color: AppColors.analogous1,
-                        onPressed: () {},
-                        child: Text(
-                          "EMERGENCY",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(50),
-                          ),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                      ),
-                    ),
-                  ],
+                  ),
+                  padding: EdgeInsets.symmetric(vertical: 16),
                 ),
               ),
             ],
-          );
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _buildAppBar() {

@@ -3,8 +3,6 @@ import 'package:covid19/app/core/flutter_icons_icons.dart';
 import 'package:flutter/material.dart';
 
 import '../core/consts.dart';
-import '../core/consts.dart';
-import '../core/consts.dart';
 
 class HomeView extends StatefulWidget {
   @override
